@@ -90,14 +90,13 @@ img {
 }
 .coverBar{
     position: absolute;
-    padding: 2px;
     border: solid rgba(0, 0, 0, 0.733) 0.5px;
     display: flex;
     flex-wrap: wrap;
     height: 100px;
     width: 100%;
-    top: -10px;
-    left: -10px;
+    top: 0px;
+    left: 0px;
     justify-content: space-between;
 }
 
@@ -155,16 +154,24 @@ img {
     padding: 2%;
 }
 .boxText {
+	margin: 0px 0px;
+	width: 100%;
     max-height: none;
     padding-top: 15%;
-    padding-left: 20%;
-    padding-right: 20%;
     border-radius: 2px;
     background-color: rgba(255, 255, 255, 0.13);
     color: rgba(255, 255, 255, 0.8);
     box-shadow: none;
     display:inline;
     font-size: 130%;
+}
+@media only screen and (max-width: 768px) {
+		h1{
+			font-size: 120%;
+		}
+		h3{
+			font-size: 100%;
+		}
 }
 .boxText img {
     width: 60%;
