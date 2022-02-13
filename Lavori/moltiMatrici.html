@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<style>
+    *{
+        padding: 0;
+    }
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: solid black 1px;
+        background-color: #0a233b;
+
+    }
+    .boxs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: #0a233b;
+	
+        
+    }
+    .boxA, .boxB {
+
+        border: solid black 1px;
+        width: 30%;
+        color: white;
+        font-size: large;
+        background-color: #0d385d;
+        margin: 5%;
+    }
+
+    button, input {
+
+        color: white;
+        font-size: large;
+        background-color: #0d385d;
+        width: 50px;
+    }
+
+    .casella {
+
+   
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+   
+    border: solid black 1px;
+    color: rgba(255, 0, 0, 0.801);
+    transition: all 0.2s ease-in-out;
+    
+     }
+
+    .boxBoxCasella {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+.boxContienitoreCaselleGioco {
+    background-color: #ffffff;
+    width: 50%;
+    height: 70%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    border: solid black 2px;
+
+}
+.boxMatriciRandom {
+    background-color: #ffffff;
+    width: 50%;
+    height: 70%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+
+    border: solid black 2px;
+
+}
+    
+</style>
+<body>
+    
+<div class="main">
+	
+    <button onclick="invio()">invio</button>
+</div>
+    <div class="boxMatriciRandom">
+        <div class="boxContienitoreCaselleGioco">
+            <p id="p1"><p>
+        </div>
+        <div class="boxContienitoreCaselleGioco">
+            <p id="p2"><p>
+        </div>
+    </div>
+    <div class="boxContienitoreCaselleGioco">
+        <p id="pfinal"><p>
+    </div>
+
+
+
+<script>
+var RIGHE = 2;
+var COLONNE = 3;
+
+var m1=  Array(RIGHE).fill(null).map(() => Array(COLONNE));
+var m2=  Array(RIGHE+1).fill(null).map(() => Array(COLONNE));
+
+
+
+
+function random() {
+	return Math.floor(Math.random() * 10);
+}
+
+
+function invio(){
+	out(m1, "p1");
+    out(m2, "p2");
+    outFinal();
+
+}
+
+
+
+function generaMatrice(m) {
+	var str = " ";
+	for(var i = 0; i < m.length; i++) {
+        str += "<div class='boxs'>";
+          for(var j = 0; j < m[0].length; j++) {
+		str += "<div class='casella'>";
+	     m[i][j] = random();
+		
+	     str += " ";
+	     str += m[i][j];
+             str += "</div>";
+          } 
+
+        str += "</div>";
+        }
+	
+    return str;
+}
+
+function moltiplicaMatrici(m1, m2) {
+    var m=  Array(m1.length).fill(null).map(() => Array(m1[0].length));
+    var str = "";
+    var sum = 0;
+    for(var i = 0; i < m.length; i++) {
+        str += "<div class='boxs'>";
+        for(var j = 0; j < m[0].length; j++) {
+
+		    str += "<div class='casella'>";
+            
+            for(var t = 0; t < m1[0].length; t++) {
+                console.log(m1[j][t]);
+                console.log(m2[t][j]);
+                console.log(m1[j][t] * m2[t][j]);
+                sum += (m1[j][t] * m2[t][j]);
+                
+
+	            m[i][j] = sum;
+		
+	            str += " ";
+	            str += m[i][j];
+                str += "</div>";
+                
+            } 
+
+        }
+            sum = 0;
+
+        str += "</div>";
+    }
+    return str;
+}
+function out(m, id) {
+    var str = generaMatrice(m);
+    //console.log(str);
+    document.getElementById(id).innerHTML = str;
+}
+function outFinal() {
+    var str = moltiplicaMatrici(m1, m2);
+    document.getElementById("pfinal").innerHTML = str;
+}
+
+
+
+</script>
+
+</body>
+</html>

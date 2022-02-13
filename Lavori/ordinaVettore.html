@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<style>
+    *{
+        padding: 0;
+    }
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: solid black 1px;
+        background-color: #0a233b;
+
+    }
+    .boxs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: #0a233b;
+        
+    }
+    .boxA, .boxB {
+
+        border: solid black 1px;
+        width: 30%;
+        color: white;
+        font-size: large;
+        background-color: #0d385d;
+        margin: 5%;
+    }
+
+    button, input {
+
+        color: white;
+        font-size: large;
+        background-color: #0d385d;
+        width: 50px;
+    }
+
+    
+</style>
+<body>
+    
+<div class="main">
+    <div class="boxs">
+        <div class="boxA">   
+            <p>numeri inseriti: </p>
+            <p id="paragrafo"></p>
+        </div>
+
+        <div class="boxA">
+            <p>numeri ordinati: </p>
+            <p id="paragrafo1"></p>
+        </div>
+    </div>
+    <input type="number" id="num" > 
+    <br>
+    <button onclick="getEle()">invio</button>
+</div>
+
+
+
+
+
+<script>
+const nums = [];
+
+
+
+function getEle(){
+    var str = " ";
+    var x = document.getElementById("num").value;
+    x = parseInt(x);
+    nums.push(x);
+    for(i = 0; i < nums.length; i++) {
+        str += "<li> "
+        str += nums[i];
+        str += "</li>"
+    }
+    
+    document.getElementById("paragrafo").innerHTML = str;
+    str = "";
+    ordinamento(nums);
+    for(i = 0; i < nums.length; i++) {
+        str += "<li> "
+        str += nums[i];
+        str += "</li>"
+    }
+    
+    document.getElementById("paragrafo1").innerHTML = str;
+
+}
+function ordinamento(array) {
+
+
+    var temp;
+
+    for(e = 0; e<array.length; e++){ 
+        for (i = 0; i<array.length - e - 1; i++){
+
+            if(parseInt(array[i]) >parseInt (array[i+1])){
+
+            temp = array[i];
+
+            array[i] = array[i+1];
+
+            array[i+1] = temp;
+
+            }   
+        }
+    }
+}
+</script>
+
+</body>
+</html>
