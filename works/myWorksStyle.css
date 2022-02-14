@@ -1,0 +1,97 @@
+:root {
+    --red-1: #FE002F;
+
+    /*ligth mode*/
+    --backcolor: #f5f5f5;
+    --box-backgound: #ffffff;
+    --textColor: #777;
+    /*ligth mode
+    --backColor: #181717;
+    --box-backColor: #000000;
+    --textColor: #ffffff;*/
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    font-size: 30px;
+    position: relative;
+    margin-bottom: 80px;
+}
+h1::after {
+    content: '';
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(to right, var(--red-1), rgb(0, 4, 255));
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.hero {
+    width: 100%;
+    height: auto;
+    background: var(--backColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviw-box {
+    width: 90%;
+    max-width: 700px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.25);
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.card {
+    height: 300px;
+    padding: 40px;
+    color: var(--textColor);
+    box-sizing: border-box;
+    background: var(--box-backColor);
+    position: relative;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.profile img {
+    width: 70px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.profile h3 {
+    font-size: 26px;
+    color: black;
+    margin-bottom: 8px;
+}
+
+#slide {
+    width: 100%;
+    padding-right: 60px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sidebar {
+    width: 400px;
+    height: 100%;
+    padding: 15px 0;
+    box-sizing: border-box;
+    background: linear-gradient(to right, var(--box-backgound),  var(--red-1));
+    position: absolute;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}

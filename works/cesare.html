@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cesare</title>
+</head>
+
+<div>
+    <button onclick="invio()">invio</button>
+    <input type="text" id="text"></input> <br><br>
+    <input type="text" id="key" ></input>
+    <p id="out"></p>
+</div>
+
+
+<style>
+
+button {
+    color: white;
+    font-size: large;
+    background-color: #0d385d;
+    width: 50px;
+}
+
+</style>
+
+<script>
+    const c = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    function invio() {
+        cifra(readText(), toNumeber(readKey()));
+
+        printText();
+    }
+
+    function readText() {
+        return document.getElementById("text").value;
+    }
+
+    function readKey() {
+        return document.getElementById("key").value;
+    }
+
+    function toNumeber(key) { 
+        for(var i = 0; i < c.length; i++) {
+            if(c[i] == key.toUpperCase() || c[i] == key) return i;
+        }
+    }
+
+    function cifra(text, key) {
+        key++;
+        var newText;
+        for(var i = 0; i < text.length; i++) {
+            var at = toNumeber(text.charAt(i));
+
+            newText += c[at +key];
+        }
+        console.log(newText);
+    }
+
+ 
+
+    function printText() {
+
+    }
+
+</script>
