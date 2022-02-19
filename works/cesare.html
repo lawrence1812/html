@@ -8,9 +8,9 @@
 </head>
 
 <div>
-    <button onclick="invio()">invio</button>
-    <input type="text" id="text"></input> <br><br>
-    <input type="text" id="key" ></input>
+    <button onclick="invio()">invio</button> <!-- pulsante di invio -->
+    <input type="text" id="formParolaDaCodificare"></input> <br><br>
+    <input type="text" id="formKey"></input>
     <p id="out"></p>
 </div>
 
@@ -27,42 +27,48 @@ button {
 </style>
 
 <script>
-    const c = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    function invio() {
-        cifra(readText(), toNumeber(readKey()));
+    const lettereAlfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-        printText();
+    function invio() {
+        var messaggioCifrato = cifra( readText(), toNumeber( readKey() ) );
+
+        printText(messaggioCifrato);
     }
 
-    function readText() {
-        return document.getElementById("text").value;
+    function readText() { // legge il messaggio
+        return document.getElementById("formParolaDaCodificare").value;
     }
 
     function readKey() {
-        return document.getElementById("key").value;
+        return document.getElementById("formKey").value; // legge la Key
     }
 
-    function toNumeber(key) { 
-        for(var i = 0; i < c.length; i++) {
-            if(c[i] == key.toUpperCase() || c[i] == key) return i;
+    function toNumeber(key) { // restituisce la posizione della lettera
+        var number;
+        for(var i = 0; i <  lettereAlfabeto.length; i++) {
+            if(lettereAlfabeto[i] == key.toUpperCase() || lettereAlfabeto[i] == key) number = i;
         }
+        return number;
     }
 
-    function cifra(text, key) {
+    function cifra(text, key) { // restituisce il messaggio crittografato
         key++;
-        var newText;
+        var newText = "";
         for(var i = 0; i < text.length; i++) {
-            var at = toNumeber(text.charAt(i));
-
-            newText += c[at +key];
+            var number = toNumeber(text.charAt(i));
+            var sum =  number + key;
+            if(sum >= lettereAlfabeto.length) {
+                sum =  sum - lettereAlfabeto.length;
+            }
+            newText += lettereAlfabeto[sum];
         }
-        console.log(newText);
+        return newText;
     }
 
- 
 
-    function printText() {
 
+    function printText(text) {
+      document.getElementById("out").innerHTML = text;
     }
 
 </script>
