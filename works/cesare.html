@@ -8,10 +8,15 @@
 </head>
 
 <div>
-    <button onclick="invio()">invio</button> <!-- pulsante di invio -->
-    <input type="text" id="formParolaDaCodificare"></input> <br><br>
-    <input type="text" id="formKey"></input>
-    <p id="out"></p>
+    <button onclick="crittografa()">invio</button> <!-- pulsante di invio -->
+    <input type="text" id="formParolaDaCritto" value="inserisci il messaggio"></input> <br><br>
+    <input type="number" id="formKeyCritto" value="1"></input>
+    <p id="outputCritto"> </p>
+    <br><br>
+    <button onclick="decrittografa()">invio</button> <!-- pulsante di invio -->
+    <input type="text" id="formParolaDaDecritto" value="JOTFSJTDJAJMANFTTBHHJP"></input> <br><br>
+    <input type="number" id="formKeyDecritto" value="1"></input>
+    <p id="outputDecritto"> </p>
 </div>
 
 
@@ -23,24 +28,33 @@ button {
     background-color: #0d385d;
     width: 50px;
 }
+input {
+
+}
+p {
+
+}
 
 </style>
 
 <script>
-    const lettereAlfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    const lettereAlfabeto = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' '];
 
-    function invio() {
-        var messaggioCifrato = cifra( readText(), toNumeber( readKey() ) );
-
-        printText(messaggioCifrato);
+    function crittografa() {
+        var messaggioCifrato = cifra( readText("formParolaDaCritto"), readKey("formKeyCritto") /*toNumeber( readKey() )*/ );
+        printText(messaggioCifrato, "outputCritto");
+    }
+    function decrittografa() {
+        var messaggioCifrato = decifra( readText("formParolaDaDecritto"), readKey("formKeyDecritto") /*toNumeber( readKey() )*/ );
+        printText(messaggioCifrato, "outputDecritto");
     }
 
-    function readText() { // legge il messaggio
-        return document.getElementById("formParolaDaCodificare").value;
+    function readText(value) { // legge il messaggio
+        return document.getElementById(value).value;
     }
 
-    function readKey() {
-        return document.getElementById("formKey").value; // legge la Key
+    function readKey(value) {
+        return parseInt(document.getElementById(value).value); // legge la Key
     }
 
     function toNumeber(key) { // restituisce la posizione della lettera
@@ -52,7 +66,7 @@ button {
     }
 
     function cifra(text, key) { // restituisce il messaggio crittografato
-        key++;
+
         var newText = "";
         for(var i = 0; i < text.length; i++) {
             var number = toNumeber(text.charAt(i));
@@ -65,10 +79,27 @@ button {
         return newText;
     }
 
+    function decifra(text, key) { // restituisce il messaggio decrittografato
 
-
-    function printText(text) {
-      document.getElementById("out").innerHTML = text;
+        var newText = "";
+        for(var i = 0; i < text.length; i++) {
+            var number = toNumeber(text.charAt(i));
+            var sum =  number - key;
+            console.log(sum);
+            if(sum < 0) {
+                sum =  sum + lettereAlfabeto.length;
+            }
+            console.log(sum);
+            newText += lettereAlfabeto[sum];
+        }
+        return newText;
     }
+
+
+    function printText(text, output) {
+      document.getElementById(output).innerHTML = text;
+    }
+
+
 
 </script>

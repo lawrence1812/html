@@ -10,6 +10,9 @@
     *{
         padding: 0;
     }
+    :root {
+      --altezzaMatrice: 300px;
+    }
     .main {
         display: flex;
         flex-direction: column;
@@ -23,13 +26,13 @@
         flex-direction: row;
         justify-content: space-around;
         background-color: #0a233b;
-	
-        
+
+
     }
     .boxA, .boxB {
 
         border: solid black 1px;
-        width: 30%;
+        width: 50%;
         color: white;
         font-size: large;
         background-color: #0d385d;
@@ -46,7 +49,7 @@
 
     .casella {
 
-   
+
     width: 50px;
     height: 50px;
     margin: 0px;
@@ -56,11 +59,11 @@
     align-items: center;
     justify-content: center;
 
-   
+
     border: solid black 1px;
     color: rgba(255, 0, 0, 0.801);
     transition: all 0.2s ease-in-out;
-    
+
      }
 
     .boxBoxCasella {
@@ -71,9 +74,9 @@
 
 }
 .boxContienitoreCaselleGioco {
-    background-color: #ffffff;
+    background-color: white;
     width: 50%;
-    height: 70%;
+    height: var(--altezzaMatrice);
 
     display: flex;
     flex-direction: column;
@@ -98,12 +101,12 @@
     border: solid black 2px;
 
 }
-    
+
 </style>
 <body>
-    
+
 <div class="main">
-	
+
     <button onclick="invio()">invio</button>
 </div>
     <div class="boxMatriciRandom">
@@ -151,15 +154,15 @@ function generaMatrice(m) {
           for(var j = 0; j < m[0].length; j++) {
 		str += "<div class='casella'>";
 	     m[i][j] = random();
-		
+
 	     str += " ";
 	     str += m[i][j];
              str += "</div>";
-          } 
+          }
 
         str += "</div>";
         }
-	
+
     return str;
 }
 
@@ -172,26 +175,25 @@ function moltiplicaMatrici(m1, m2) {
         for(var j = 0; j < m[0].length; j++) {
 
 		    str += "<div class='casella'>";
-            
+
             for(var t = 0; t < m1[0].length; t++) {
-                console.log(m1[j][t]);
-                console.log(m2[t][j]);
-                console.log(m1[j][t] * m2[t][j]);
-                sum += (m1[j][t] * m2[t][j]);
-                
+
+                sum += 0;//(m1[j][t] * m2[t][j]);
+
 
 	            m[i][j] = sum;
-		
+
 	            str += " ";
 	            str += m[i][j];
                 str += "</div>";
-                
-            } 
 
+            }
+str += "</div>";
         }
             sum = 0;
 
         str += "</div>";
+
     }
     return str;
 }
